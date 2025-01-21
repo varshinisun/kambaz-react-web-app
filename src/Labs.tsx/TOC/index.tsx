@@ -5,7 +5,7 @@ export default function TOC() {
           <div>
        <ul>
 
-        <h2>Varshini Sundaresan TOC</h2>
+        <h2>Varshini Sundaresan CS 4550 Online</h2>
          <li><Link to="/Labs">Labs</Link></li>
          <li><Link to="/Labs/Lab1">Lab 1</Link></li>
          <li><Link to="/Labs/Lab2">Lab 2</Link></li>
