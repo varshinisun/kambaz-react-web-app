@@ -74,7 +74,7 @@ export default function KambazNavigation() {
        <NavLink to="/Kambaz/Account" id="wd-account-link"
          className={({ isActive }) => 
            `list-group-item text-center border-0 ${isActive ? "active-link" : "bg-black text-white"}`}>
-         <FaRegCircleUser className="fs-1 text-white" /><br />
+         <FaRegCircleUser className="fs-1 text-danger" /><br />
          Account 
        </NavLink>
  
