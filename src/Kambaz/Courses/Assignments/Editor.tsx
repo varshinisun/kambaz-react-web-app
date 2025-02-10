@@ -1,132 +1,86 @@
+import { Form, Button, Row, Col } from "react-bootstrap";
+
 export default function AssignmentEditor() {
-     return (
-       <div id="wd-assignments-editor">
-         <label htmlFor="wd-name">Assignment Name</label>
-         <input id="wd-name" value="A1 - ENV + HTML" /><br /><br />
-         <textarea id="wd-description">
-           The assignment is available online Submit a link to the landing page of
-         </textarea>
-         <br />
-         <table>
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-points">Points</label>
-          </td>
-          <td>
-            <input id="wd-points" value={100} />
-          </td>
-        </tr>
-        <br />
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-due-date">Due Date</label>
-          </td>
-          <td>
-            <input id="wd-due-date" value="January 25, 2025" />
-          </td>
-        </tr>
-        <br />
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-website-url">Website URL</label>
-          </td>
-          <td>
-            <input id="wd-wesite-url" value="" />
-          </td>
-        </tr>
-        <br />
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-group">Group</label>
-          </td>
-          <td>
-            <input id="wd-group" value="" />
-          </td>
-        </tr>
-        <br />
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-media-recordings">Media Recordings</label>
-          </td>
-          <td>
-            <input id="wd-media recordings" value="" />
-          </td>
-        </tr>
-        <br />
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-available-from">This Assignment is available from:</label>
-          </td>
-          <td>
-            <input id="wd-available-from" value="" />
-          </td>
-        </tr>
-        <br />
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-student-annotation">Student Annotation</label>
-          </td>
-          <td>
-            <input id="wd-student-annotation" value="" />
-          </td>
-        </tr>
-        <br />
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-available-until">This assignment is available until:</label>
-          </td>
-          <td>
-            <input id="wd-available-until" value="" />
-          </td>
-        </tr>
-        <br />
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-submission-type">Submission Type</label>
-          </td>
-          <td>
-            <input id="wd-submission-type" value="" />
-          </td>
-        </tr>
-        <br />
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-file-upload">File Upload</label>
-          </td>
-          <td>
-            <input id="wd-file-upload" value="" />
-          </td>
-        </tr>
-        <br />
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-name">File Name</label>
-          </td>
-          <td>
-            <input id="wd-name" value="" />
-          </td>
-        </tr>
-        <br />
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-text-entry">Text Entry</label>
-          </td>
-          <td>
-            <input id="wd-text-entry" value="" />
-          </td>
-        </tr>
-        <br />
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-assign-to">Assign this to:</label>
-          </td>
-          <td>
-            <input id="wd-assign-to" value="" />
-          </td>
-        </tr>
+  return (
+    <div id="wd-assignments-editor" className="container mt-4 text-start">
+      <Form>
+        <Form.Group className="mb-3">
+          <Form.Label htmlFor="wd-name">Assignment Name</Form.Label>
+          <Form.Control id="wd-name" defaultValue="A1 - ENV + HTML" />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label htmlFor="wd-description">Description</Form.Label>
+          <Form.Control as="textarea" id="wd-description" defaultValue="The assignment is available online. Sumbit a link of your website to the landing page on Netlify. The landing page should include the following: Your full name and section, links to each of the lab assignments, links to the Kambaz application, and links to all relevant code repositories." />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label htmlFor="wd-name-group">Assignment Group</Form.Label>
+          <Form.Control id="wd-name-group" defaultValue="Assignments" />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label htmlFor="wd-display">Display Grade As</Form.Label>
+          <Form.Control id="wd-display" defaultValue="Percentage" />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label htmlFor="wd-points">Points</Form.Label>
+          <Form.Control id="wd-points" type="number" defaultValue={100} />
+        </Form.Group>
 
-
-
-      </table>
+        <div id="wd-css-responsive-forms-2">
+      <h5>Submission Type</h5>
+      <Form>
+        <Form.Group as={Row} className="mb-3">
+          <Form.Label column sm={2}>Text Entry</Form.Label>
+          <Col sm={10}>
+            <Form.Control type="text" placeholder="Enter text" />
+          </Col>
+        </Form.Group>
+        <Form.Group as={Row} className="mb-3">
+          <Form.Label column sm={2}>Website URL</Form.Label>
+          <Col sm={10}>
+            <Form.Control type="url" placeholder="Enter URL" />
+          </Col>
+        </Form.Group>
+        <Form.Group as={Row} className="mb-3">
+          <Form.Label column sm={2}>Media Recordings</Form.Label>
+          <Col sm={10}>
+            <Form.Control type="text" placeholder="Enter media recording details" />
+          </Col>
+        </Form.Group>
+        <Form.Group as={Row} className="mb-3">
+          <Form.Label column sm={2}>Student Annotation</Form.Label>
+          <Col sm={10}>
+            <Form.Control type="text" placeholder="Enter annotation" />
+          </Col>
+        </Form.Group>
+        <Form.Group as={Row} className="mb-3">
+          <Form.Label column sm={2}>File Uploads</Form.Label>
+          <Col sm={10}>
+            <Form.Control type="file" />
+          </Col>
+        </Form.Group>
+        <Form.Group as={Row} className="mb-3">
+        </Form.Group>
+      </Form>
     </div>
-);}
+
+    <Form.Group className="mb-3">
+          <Form.Label htmlFor="wd-assign-to">Assign To</Form.Label>
+          <Form.Control id="wd-assign-to" type="text" />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label htmlFor="wd-due-date">Due</Form.Label>
+          <Form.Control id="wd-due-date" type="date" defaultValue="2025-01-25" />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label htmlFor="wd-available-from">Available From</Form.Label>
+          <Form.Control id="wd-available-from" type="date" />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label htmlFor="wd-available-until">Available Until</Form.Label>
+          <Form.Control id="wd-available-until" type="date" />
+        </Form.Group>
+        <Button variant="primary" className="w-100">Save Assignment</Button>
+      </Form>
+    </div>
+  );
+}
