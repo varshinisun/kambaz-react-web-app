@@ -13,6 +13,19 @@ import SimpleArrays from "./SimpleArrays";
 import ArrayIndexAndLength from "./ArrayIndexAndLength";
 import AddingAndRemovingToFromArrays from "./AddingAndRemovingToFromArrays";
 import ForLoops from "./ForLoops";
+import MapFunction from "./MapFunction";
+import FindFunction from "./FindFunction";
+import FindIndex from "./FindIndex";
+import FilterFunction from "./FilterFunction";
+import JsonStringify from "./JsonStringify";
+import House from "./House";
+import TodoItem from "./todos/TodoItem";
+import TodoList from "./todos/TodoList";
+import Spreading from "./Spreading";
+import Destructing from "./Destructing";
+import FunctionDestructing from "./FunctionDestructing";
+import DestructingImports from "./DestructingImports";
+import Classes from "./Classes";
 
 export default function Lab3() {
      return (
@@ -33,6 +46,19 @@ export default function Lab3() {
          <ArrayIndexAndLength />
          <AddingAndRemovingToFromArrays />
          <ForLoops />
+         <MapFunction />
+         <FindFunction />
+         <FindIndex />
+         <FilterFunction />
+         <JsonStringify />
+         <House />
+         <TodoItem />
+         <TodoList />
+         <Spreading />
+         <Destructing />
+         <FunctionDestructing />
+         <DestructingImports />
+         <Classes />
        </div>
    );}
    
