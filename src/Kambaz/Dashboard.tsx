@@ -19,7 +19,7 @@ export default function Dashboard() {
         <Card>
           <Link to="/Kambaz/Courses/1234/Home"
                 className="wd-dashboard-course-link text-decoration-none text-dark">
-            <Card.Img variant="top" src='/src/assets/KamazNEUCS1234.jpg' width="100%" height={160}/>
+            <Card.Img variant="top" src='assets/KamazNEUCS1234.jpg' width="100%" height={160}/>
             <Card.Body>
               <Card.Title className="wd-dashboard-course-title">CS1234 React JS</Card.Title>
               <Card.Text  className="wd-dashboard-course-description">Full Stack Software Developer</Card.Text>
@@ -32,7 +32,7 @@ export default function Dashboard() {
       <Col className="wd-dashboard-course2" style={{ width: "250px" }}>         <Card>
           <Link to="/Kambaz/Courses/1235/Home"
                 className="wd-dashboard-course-link text-decoration-none text-dark">
-            <Card.Img variant="top" src='/src/assets/KambazDesign1235.jpg' width="100%" height={160}/>
+            <Card.Img variant="top" src='assets/KambazDesign1235.jpg' width="100%" height={160}/>
             <Card.Body>
               <Card.Title className="wd-dashboard-course-title">DE1235 Design</Card.Title>
               <Card.Text  className="wd-dashboard-course-description">Brand and Identity Design</Card.Text>
@@ -44,7 +44,7 @@ export default function Dashboard() {
       <Col className="wd-dashboard-course3" style={{ width: "250px" }}>         <Card>
           <Link to="/Kambaz/Courses/1236/Home"
                 className="wd-dashboard-course-link text-decoration-none text-dark">
-            <Card.Img variant="top" src='/src/assets/KambazDS1236.jpg' width="100%" height={160}/>
+            <Card.Img variant="top" src='assets/KambazDS1236.jpg' width="100%" height={160}/>
             <Card.Body>
               <Card.Title className="wd-dashboard-course-title">DE1236 Studio Art</Card.Title>
               <Card.Text  className="wd-dashboard-course-description">Color and Composition Studio</Card.Text>
@@ -56,7 +56,7 @@ export default function Dashboard() {
         <Col className="wd-dashboard-course4" style={{ width: "250px" }}>         <Card>
           <Link to="/Kambaz/Courses/1237/Home"
                 className="wd-dashboard-course-link text-decoration-none text-dark">
-            <Card.Img variant="top" src='/src/assets/KambazCS1237.jpeg' width="100%" height={160}/>
+            <Card.Img variant="top" src='assets/KambazCS1237.jpeg' width="100%" height={160}/>
             <Card.Body>
               <Card.Title className="wd-dashboard-course-title">ES1237 Environment </Card.Title>
               <Card.Text  className="wd-dashboard-course-description">Carbon Emissions in Atmosphere</Card.Text>
@@ -68,7 +68,7 @@ export default function Dashboard() {
         <Col className="wd-dashboard-course5" style={{ width: "250px" }}>         <Card>
           <Link to="/Kambaz/Courses/1238/Home"
                 className="wd-dashboard-course-link text-decoration-none text-dark">
-            <Card.Img variant="top" src='/src/assets/835-Columbus-Ave-NU©Keitaro-Yoshioka-058-1280x854-1.jpeg' width="100%" height={160}/>
+            <Card.Img variant="top" src='assets/835-Columbus-Ave-NU©Keitaro-Yoshioka-058-1280x854-1.jpeg' width="100%" height={160}/>
             <Card.Body>
               <Card.Title className="wd-dashboard-course-title">DE1238 Form and Structure</Card.Title>
               <Card.Text  className="wd-dashboard-course-description">Structural Integrity of Wires</Card.Text>
@@ -80,7 +80,7 @@ export default function Dashboard() {
         <Col className="wd-dashboard-course6" style={{ width: "250px" }}>         <Card>
           <Link to="/Kambaz/Courses/1239/Home"
                 className="wd-dashboard-course-link text-decoration-none text-dark">
-            <Card.Img variant="top" src='/src/assets/KambazGame.jpg' width="100%" height={160}/>
+            <Card.Img variant="top" src='assets/KambazGame.jpg' width="100%" height={160}/>
             <Card.Body>
               <Card.Title className="wd-dashboard-course-title">CS1239 Game Programming</Card.Title>
               <Card.Text  className="wd-dashboard-course-description">C++ Game Project</Card.Text>
@@ -92,7 +92,7 @@ export default function Dashboard() {
         <Col className="wd-dashboard-course7" style={{ width: "250px" }}>         <Card>
           <Link to="/Kambaz/Courses/1240/Home"
                 className="wd-dashboard-course-link text-decoration-none text-dark">
-            <Card.Img variant="top" src='/src/assets/IMG_Boston_Mural-1.jpeg' width="100%" height={160}/>
+            <Card.Img variant="top" src='assets/IMG_Boston_Mural-1.jpeg' width="100%" height={160}/>
             <Card.Body>
               <Card.Title className="wd-dashboard-course-title">CS1240 Intro Abstraction</Card.Title>
               <Card.Text  className="wd-dashboard-course-description">Principles of Abstraction</Card.Text>
