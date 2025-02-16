@@ -1,6 +1,7 @@
 import { FaPlus } from "react-icons/fa6";
 import GreenCheckmark from "./GreenCheckmark";
 import { Button, Dropdown } from "react-bootstrap";
+import { TbCancel } from "react-icons/tb";
 
 export default function ModulesControls() {
  return (
@@ -16,16 +17,16 @@ export default function ModulesControls() {
         </Dropdown.Toggle>
         <Dropdown.Menu>
           <Dropdown.Item id="wd-publish-all-modules-and-items">
-            Publish all modules and items <GreenCheckmark />
+          <GreenCheckmark />Publish all modules and items 
           </Dropdown.Item>
           <Dropdown.Item id="wd-publish-modules-only">
-            Publish modules only <GreenCheckmark />
+          <GreenCheckmark />Publish modules only 
           </Dropdown.Item>
           <Dropdown.Item id="wd-publish-items-only">
-            Publish items only <GreenCheckmark />
+          <TbCancel />Unpublish all modules and items 
           </Dropdown.Item>
           <Dropdown.Item id="wd-publish-none">
-            Publish none <GreenCheckmark />
+          <TbCancel />Unpublish modules only 
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>

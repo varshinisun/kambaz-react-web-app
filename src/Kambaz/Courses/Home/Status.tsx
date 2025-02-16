@@ -15,6 +15,7 @@ export default function CourseStatus() {
       <h2 className="mb-3">Course Status</h2>
 
       <div className="d-grid gap-2">
+      <div className="d-flex gap-2">
         <Button variant="secondary" size="sm" id="wd-unpublish-btn">
           <TbCancel className="position-cancel me-2" style={{ bottom: "1px" }} />
           Unpublish
@@ -24,6 +25,7 @@ export default function CourseStatus() {
         <GreenCheckmark />
           Publish
         </Button>
+        </ div>
 
         <Button variant="secondary" size="sm" id="wd-import-content-btn">
           <CgImport className="position-import me-2" style={{ bottom: "1px" }} />

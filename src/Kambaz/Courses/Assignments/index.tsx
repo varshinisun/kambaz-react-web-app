@@ -9,10 +9,11 @@ export default function Assignments() {
   return (
     <div id="wd-assignments" className="container mt-4">
       <Form.Control
-        placeholder="Search for Assignments"
-        id="wd-search-assignment"
+        placeholder= "Search for Assignments"
+        id="wd-search-assignment"              
         className="mb-3"
-      />
+        />
+
       <div className="d-flex gap-2 mb-3">
         <Button variant="secondary" id="wd-add-assignment-group">
           + Group
