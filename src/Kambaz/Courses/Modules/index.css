@@ -7,6 +7,10 @@
    .wd-module, .wd-lesson {
      text-align: left;
    }
+
+   .wd-margin-bottom {
+    margin-bottom: 1px !important;
+   }
    
    /* Ensures icons and text are properly aligned */
    .wd-title {

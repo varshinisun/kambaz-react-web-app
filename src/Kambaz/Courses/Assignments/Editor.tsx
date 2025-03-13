@@ -1,86 +1,124 @@
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { useParams, useNavigate } from "react-router";
+import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
+import { addAssignment, updateAssignment, deleteAssignment } from "./reducer";
+import { v4 as uuidv4 } from "uuid";
+import { Form, Button, Modal } from "react-bootstrap";
 
 export default function AssignmentEditor() {
-  return (
-    <div id="wd-assignments-editor" className="container mt-4 text-start">
-      <Form>
-        <Form.Group className="mb-3">
-          <Form.Label htmlFor="wd-name">Assignment Name</Form.Label>
-          <Form.Control id="wd-name" defaultValue="A1 - ENV + HTML" />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label htmlFor="wd-description">Description</Form.Label>
-          <Form.Control as="textarea" id="wd-description" defaultValue="The assignment is available online. Sumbit a link of your website to the landing page on Netlify. The landing page should include the following: Your full name and section, links to each of the lab assignments, links to the Kambaz application, and links to all relevant code repositories." />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label htmlFor="wd-name-group">Assignment Group</Form.Label>
-          <Form.Control id="wd-name-group" defaultValue="Assignments" />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label htmlFor="wd-display">Display Grade As</Form.Label>
-          <Form.Control id="wd-display" defaultValue="Percentage" />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label htmlFor="wd-points">Points</Form.Label>
-          <Form.Control id="wd-points" type="number" defaultValue={100} />
-        </Form.Group>
+    const { aid, cid } = useParams();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-        <div id="wd-css-responsive-forms-2">
-      <h5>Submission Type</h5>
-      <Form>
-        <Form.Group as={Row} className="mb-3">
-          <Form.Label column sm={2}>Text Entry</Form.Label>
-          <Col sm={10}>
-            <Form.Control type="text" placeholder="Enter text" />
-          </Col>
-        </Form.Group>
-        <Form.Group as={Row} className="mb-3">
-          <Form.Label column sm={2}>Website URL</Form.Label>
-          <Col sm={10}>
-            <Form.Control type="url" placeholder="Enter URL" />
-          </Col>
-        </Form.Group>
-        <Form.Group as={Row} className="mb-3">
-          <Form.Label column sm={2}>Media Recordings</Form.Label>
-          <Col sm={10}>
-            <Form.Control type="text" placeholder="Enter media recording details" />
-          </Col>
-        </Form.Group>
-        <Form.Group as={Row} className="mb-3">
-          <Form.Label column sm={2}>Student Annotation</Form.Label>
-          <Col sm={10}>
-            <Form.Control type="text" placeholder="Enter annotation" />
-          </Col>
-        </Form.Group>
-        <Form.Group as={Row} className="mb-3">
-          <Form.Label column sm={2}>File Uploads</Form.Label>
-          <Col sm={10}>
-            <Form.Control type="file" />
-          </Col>
-        </Form.Group>
-        <Form.Group as={Row} className="mb-3">
-        </Form.Group>
-      </Form>
-    </div>
+    const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+    const { currentUser } = useSelector((state: any) => state.accountReducer);
+    const isFaculty = currentUser?.role === "FACULTY";
 
-    <Form.Group className="mb-3">
-          <Form.Label htmlFor="wd-assign-to">Assign To</Form.Label>
-          <Form.Control id="wd-assign-to" type="text" />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label htmlFor="wd-due-date">Due</Form.Label>
-          <Form.Control id="wd-due-date" type="date" defaultValue="2025-01-25" />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label htmlFor="wd-available-from">Available From</Form.Label>
-          <Form.Control id="wd-available-from" type="date" />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label htmlFor="wd-available-until">Available Until</Form.Label>
-          <Form.Control id="wd-available-until" type="date" />
-        </Form.Group>
-        <Button variant="primary" className="w-100">Save Assignment</Button>
-      </Form>
-    </div>
-  );
+    const existingAssignment = assignments.find((assignment: any) => assignment._id === aid);
+
+    const [assignment, setAssignment] = useState(existingAssignment || {
+        _id: uuidv4(),
+        title: "",
+        description: "",
+        group: "",
+        gradeType: "",
+        points: "",
+        submissionType: "",
+        assignTo: "",
+        dueDate: "",
+        availableFrom: "",
+        availableUntil: "",
+        course: cid,
+    });
+
+    const [showModal, setShowModal] = useState(false);
+
+    const handleChange = (e: any) => {
+        setAssignment({ ...assignment, [e.target.id]: e.target.value });
+    };
+
+    const handleSave = () => {
+        if (existingAssignment) {
+            dispatch(updateAssignment(assignment));
+        } else {
+            dispatch(addAssignment(assignment));
+        }
+        navigate(`/Kambaz/Courses/${cid}/Assignments`);
+    };
+
+    const handleDelete = () => {
+        if (existingAssignment) {
+            dispatch(deleteAssignment(assignment._id));
+            setShowModal(false);
+            navigate(`/Kambaz/Courses/${cid}/Assignments`);
+        }
+    };
+
+    return (
+        <div id="wd-assignments-editor" className="container mt-4 text-start">
+            <h2>{existingAssignment ? "Edit Assignment" : "New Assignment"}</h2>
+            <Form>
+                {["title", "description", "group", "gradeType", "points"].map((id) => (
+                    <Form.Group key={id} className="mb-3">
+                        <Form.Label htmlFor={id}>{id.replace(/([A-Z])/g, " $1")}</Form.Label>
+                        <Form.Control
+                            id={id}
+                            type={id === "points" ? "number" : "text"}
+                            value={assignment[id] || ""}
+                            onChange={handleChange}
+                            disabled={!isFaculty}
+                        />
+                    </Form.Group>
+                ))}
+
+                {isFaculty && (
+                    <div id="wd-css-responsive-forms-2">
+                        {["submissionType", "assignTo", "dueDate", "availableFrom", "availableUntil"].map((id) => (
+                            <Form.Group key={id} className="mb-3">
+                                <Form.Label htmlFor={id}>{id.replace(/([A-Z])/g, " $1")}</Form.Label>
+                                <Form.Control
+                                    id={id}
+                                    type={id.includes("Date") ? "date" : "text"}
+                                    value={assignment[id] || ""}
+                                    onChange={handleChange}
+                                />
+                            </Form.Group>
+                        ))}
+                    </div>
+                )}
+
+                {isFaculty && (
+                    <div className="mt-3">
+                        <Button variant="secondary" size="sm" className="me-2" onClick={handleSave}>
+                            Save Assignment
+                        </Button>
+                        <Button variant="warning" size="sm" className="me-2" onClick={() => navigate(`/Kambaz/Courses/${cid}/Assignments`)}>
+                            Cancel
+                        </Button>
+
+                        {existingAssignment && (
+                            <Button variant="danger" size="sm" onClick={() => setShowModal(true)}>
+                                Delete
+                            </Button>
+                        )}
+                    </div>
+                )}
+            </Form>
+
+            <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+                <Modal.Header closeButton>
+                    <Modal.Title>Confirm Delete</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Are you sure you want to delete this assignment?</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowModal(false)}>
+                        Cancel
+                    </Button>
+                    <Button variant="danger" onClick={handleDelete}>
+                        Delete
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </div>
+    );
 }

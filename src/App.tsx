@@ -3,13 +3,16 @@ import './App.css'
 import Labs from "./Labs.tsx";
 import Kambaz from "./Kambaz";
 import { HashRouter, Route, Routes, Navigate } from "react-router-dom";
-
+import store from "./Kambaz/store";
+import { Provider } from "react-redux";
+import AssignmentEditor from './Kambaz/Courses/Assignments/Editor.tsx';
 
 function App() {
   //const [count, setCount] = useState(0)
 
   return (
     <HashRouter>
+      <Provider store={store}>
       <div>
         {/* <Labs /> */}
         <Routes>
@@ -17,8 +20,11 @@ function App() {
         <Route path= "/" element ={<Navigate to= "Labs" />} />
         <Route path="/Labs/*" element={<Labs />} />
         <Route path="/Kambaz/*" element={<Kambaz />} />
+        <Route path="/Kambaz/Courses/:cid/Assignments/assignmentId" element={<AssignmentEditor />} />
+
         </Routes>
       </div>
+      </Provider>
       </HashRouter>
   );
 }
