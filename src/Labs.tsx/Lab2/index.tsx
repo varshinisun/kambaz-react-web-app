@@ -24,6 +24,8 @@ export default function Lab2() {
 
     
     <Container>
+      <h1>Varshini Sundaresan CS4550 Online Section</h1>
+      <hr></hr>
       <h2>Lab 2 - Cascading Style Sheets</h2>
       <h3>Styling with the STYLE attribute</h3>
       <p>

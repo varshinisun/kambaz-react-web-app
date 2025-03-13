@@ -1,0 +1,29 @@
+/* Ensures the main container does not apply unintended centering */
+#wd-modules {
+     text-align: left;
+   }
+   
+   /* Ensures the module and lesson items align properly */
+   .wd-module, .wd-lesson {
+     text-align: left;
+   }
+
+   .wd-margin-bottom {
+    margin-bottom: 1px !important;
+   }
+   
+   /* Ensures icons and text are properly aligned */
+   .wd-title {
+     display: flex;
+     align-items: center;
+     justify-content: flex-start;
+     gap: 10px; /* Adjusts spacing between elements */
+   }
+   
+   .wd-lessons .wd-lesson {
+     display: flex;
+     align-items: center;
+     justify-content: flex-start;
+     gap: 10px; /* Adjusts spacing between icons and text */
+   }
+   
