@@ -19,15 +19,32 @@ export default function Modules() {
   const currentUser = useSelector((state: any) => state.accountReducer.currentUser); 
   const dispatch = useDispatch();
 
+  const deleteModuleHandler = async (moduleId: string) => {
+    await modulesClient.deleteModule(moduleId);
+    dispatch(deleteModule(moduleId));
+  }; 
+
+  const fetchModulesForCourse = async () => {
+    const modules = await coursesClient.findModulesForCourse(cid!);
+    dispatch(setModules(modules));
+  };
+  useEffect(() => {
+    fetchModulesForCourse();
+  }, [cid]); 
+
   const saveModule = async (module: any) => {
     await modulesClient.updateModule(module);
     dispatch(updateModule(module));
   };
 
+  console.log(saveModule);
+
   const removeModule = async (moduleId: string) => {
     await modulesClient.deleteModule(moduleId);
     dispatch(deleteModule(moduleId));
   };
+
+  console.log(removeModule);
 
   const createModuleForCourse = async () => {
     if (!cid) return;
@@ -35,6 +52,8 @@ export default function Modules() {
     const module = await coursesClient.createModuleForCourse(cid, newModule);
     dispatch(addModule(module));
   };
+
+  console.log(createModuleForCourse);
 
   const fetchModules = async () => {
     const modules = await coursesClient.findModulesForCourse(cid as string);
@@ -44,6 +63,20 @@ export default function Modules() {
     fetchModules();
   }, []);
 
+  const addModuleHandler = async () => {
+    const newModule = await coursesClient.createModuleForCourse(cid!, {
+      name: moduleName,
+      course: cid,
+    });
+    dispatch(addModule(newModule));
+    setModuleName("");
+  };
+
+  const updateModuleHandler = async (module: any) => {
+    await modulesClient.updateModule(module);
+    dispatch(updateModule(module));
+  }; 
+
   const isFaculty = currentUser?.role === "FACULTY";
 
   return (
@@ -51,9 +84,9 @@ export default function Modules() {
     {isFaculty && (
       <div className="modules-controls-wrapper mb-3">
         <ModulesControls 
+          addModule={addModuleHandler}
           setModuleName={setModuleName} 
           moduleName={moduleName}         
-          addModule={createModuleForCourse}
         />
       </div>
     )}
@@ -76,10 +109,10 @@ export default function Modules() {
                       isFaculty && ( 
                         <FormControl 
                           className="w-50 d-inline-block"
-                          onChange={(e) => dispatch(updateModule({ ...module, name: e.target.value }))}
+                          onChange={(e) => updateModuleHandler({ ...module, name: e.target.value })}
                           onKeyDown={(e) => {
                             if (e.key === "Enter") {
-                              saveModule({ ...module, editing: false });
+                              updateModuleHandler({ ...module, editing: false });
                             }
                           }}
                           defaultValue={module.name}
@@ -91,7 +124,7 @@ export default function Modules() {
                   {isFaculty && (
                     <ModuleControlButtons 
                       moduleId={module._id}
-                      deleteModule={(moduleId) => removeModule(moduleId)}
+                      deleteModule={(moduleId) => deleteModuleHandler(moduleId)}
                       editModule={(moduleId) => dispatch(editModule(moduleId))}
                     />
                   )}

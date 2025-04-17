@@ -19,7 +19,7 @@ export default function Kambaz() {
     const { currentUser } = useSelector((state: any) => state.accountReducer);
     const fetchCourses = async () => {
       try {
-        const courses = await userClient.findMyCourses();
+        const courses = await courseClient.fetchAllCourses();
         setCourses(courses);
       } catch (error) {
         console.error(error);
@@ -54,19 +54,21 @@ export default function Kambaz() {
           })
         );
       } catch (err) {
-        console.error("❌ Failed to update course:", err);
+        console.error("Failed to update course:", err);
       }
     };
     
   
     const deleteCourse = async (courseId: string) => {
-      await courseClient.deleteCourse(courseId);
+      const status = await courseClient.deleteCourse(courseId);
       setCourses(courses.filter((course) => course._id !== courseId));
   };
   
+console.log(status);
+
 
     const addNewCourse = async () => {
-      const newCourse = await userClient.createCourse(course);
+      const newCourse = await courseClient.createCourse(course);
       setCourses([ ...courses, newCourse ]);
     };
   
